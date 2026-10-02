@@ -1,0 +1,6 @@
+build*/
+weights/
+*.wav
+.claude/
+__pycache__/
+.venv/
