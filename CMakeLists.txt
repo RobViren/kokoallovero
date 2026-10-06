@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.24)
 # Clang spills an accumulator on every iteration of the conv microkernel (about 0.6x the throughput), so default to GCC.
-if(NOT DEFINED CMAKE_CXX_COMPILER AND NOT DEFINED ENV{CXX})
+if(NOT DEFINED CMAKE_CXX_COMPILER AND NOT DEFINED ENV{CXX} AND NOT CMAKE_TOOLCHAIN_FILE)
   set(CMAKE_CXX_COMPILER g++)
 endif()
 project(kokoallovero C CXX)
