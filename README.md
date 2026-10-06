@@ -29,7 +29,7 @@ cmake --build build
 ```
 
 Options:
-- `-DKK_EMBED=ON` embeds every asset from `KK_ASSET_DIR` (default `weights/`) with `#embed`, giving a single 350 MB executable that needs no files. Needs GCC 15+.
+- `-DKK_EMBED=ON` embeds every asset from `KK_ASSET_DIR` (default `weights/`), giving a single 350 MB executable that needs no files.
 - `-DKK_AVX512=ON` lets Highway dispatch to its AVX-512 targets. The kernels are tuned and tested on AVX2 only, so this is off by default.
 - `-DKK_STATIC=ON` links fully static, for a binary that runs on older glibc.
 

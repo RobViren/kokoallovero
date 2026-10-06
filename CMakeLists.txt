@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.24)
 # Clang spills an accumulator on every iteration of the conv microkernel (about 0.6x the throughput), so default to GCC.
-if(NOT DEFINED CMAKE_CXX_COMPILER AND NOT DEFINED ENV{CXX})
+if(NOT DEFINED CMAKE_CXX_COMPILER AND NOT DEFINED ENV{CXX} AND NOT CMAKE_TOOLCHAIN_FILE)
   set(CMAKE_CXX_COMPILER g++)
 endif()
 project(kokoallovero C CXX)
@@ -68,7 +68,7 @@ if(KK_FETCH_ASSETS)
 endif()
 if(KK_EMBED)
   set(KK_ASSETS src/assets.cc)
-  set_source_files_properties(src/assets.cc PROPERTIES COMPILE_OPTIONS "--embed-dir=${KK_ASSET_DIR};-O0"
+  set_source_files_properties(src/assets.cc PROPERTIES COMPILE_DEFINITIONS "KK_ASSET_DIR=\"${KK_ASSET_DIR}\""
     OBJECT_DEPENDS "${KK_ASSET_DIR}/kokoro.bin;${KK_ASSET_DIR}/voices.bin;${KK_ASSET_DIR}/g2p/lexicon.bin;${KK_ASSET_DIR}/g2p/tagger.bin;${KK_ASSET_DIR}/g2p/guesser.bin")
 else()
   set(KK_ASSETS src/noassets.cc)

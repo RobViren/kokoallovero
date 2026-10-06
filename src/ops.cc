@@ -1,5 +1,4 @@
 #include <fcntl.h>
-#include <pthread.h>
 #include <sched.h>
 #include <sys/mman.h>
 #include <sys/stat.h>
@@ -257,7 +256,7 @@ static void PinTo(int cpu) {
   cpu_set_t one;
   CPU_ZERO(&one);
   CPU_SET(cpu, &one);
-  pthread_setaffinity_np(pthread_self(), sizeof one, &one);
+  sched_setaffinity(0, sizeof one, &one);
 }
 
 Pool::Pool(int n) : n(n) {
