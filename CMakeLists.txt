@@ -68,7 +68,7 @@ if(KK_FETCH_ASSETS)
 endif()
 if(KK_EMBED)
   set(KK_ASSETS src/assets.cc)
-  set_source_files_properties(src/assets.cc PROPERTIES COMPILE_OPTIONS "--embed-dir=${KK_ASSET_DIR};-O0"
+  set_source_files_properties(src/assets.cc PROPERTIES COMPILE_DEFINITIONS "KK_ASSET_DIR=\"${KK_ASSET_DIR}\""
     OBJECT_DEPENDS "${KK_ASSET_DIR}/kokoro.bin;${KK_ASSET_DIR}/voices.bin;${KK_ASSET_DIR}/g2p/lexicon.bin;${KK_ASSET_DIR}/g2p/tagger.bin;${KK_ASSET_DIR}/g2p/guesser.bin")
 else()
   set(KK_ASSETS src/noassets.cc)
